@@ -11,12 +11,12 @@ async function importData(ctx) {
 
   const { user } = ctx.state;
   const { data } = ctx.request.body;
-  const { 
-    slug, 
-    data: dataRaw, 
-    format, 
-    idField, 
-    existingAction, 
+  const {
+    slug,
+    data: dataRaw,
+    format,
+    idField,
+    existingAction,
     ignoreMissingRelations,
     allowLocaleUpdates,
     disallowNewRelations
@@ -46,12 +46,6 @@ async function importData(ctx) {
       ignoreMissingRelations,
       allowLocaleUpdates,
       disallowNewRelations
-    });
-  } else if (fileContent?.version === 2) {
-    res = await getService('import').importDataV2(fileContent, {
-      slug,
-      user,
-      idField,
     });
   } else {
     res = await getService('import').importData(dataRaw, {

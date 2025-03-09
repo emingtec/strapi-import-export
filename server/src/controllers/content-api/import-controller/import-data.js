@@ -19,10 +19,10 @@ const bodySchema = Joi.object({
 const importData = async (ctx) => {
   const { user } = ctx.state;
 
-  const { 
-    slug, 
-    data: dataRaw, 
-    format, 
+  const {
+    slug,
+    data: dataRaw,
+    format,
     idField,
     existingAction,
     ignoreMissingRelations,
@@ -55,12 +55,6 @@ const importData = async (ctx) => {
       ignoreMissingRelations,
       allowLocaleUpdates,
       disallowNewRelations
-    });
-  } else if (fileContent?.version === 2) {
-    res = await getService('import').importDataV2(fileContent, {
-      slug,
-      user,
-      idField,
     });
   } else {
     res = await getService('import').importData(dataRaw, {

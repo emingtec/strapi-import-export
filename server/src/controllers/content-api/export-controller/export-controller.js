@@ -20,13 +20,13 @@ const bodySchema = Joi.object({
 });
 
 const exportData = async (ctx) => {
-  let { 
-    slug, 
-    search, 
-    applySearch, 
-    exportFormat, 
-    relationsAsId, 
-    deepness, 
+  let {
+    slug,
+    search,
+    applySearch,
+    exportFormat,
+    relationsAsId,
+    deepness,
     exportPluginsContentTypes,
     documentIds,
     exportAllLocales,
@@ -40,10 +40,10 @@ const exportData = async (ctx) => {
   try {
     if (exportFormat === 'json-v3') {
       console.log('exportDataV3');
-      data = await getService('export').exportDataV3({ 
-        slug, 
-        search, 
-        applySearch, 
+      data = await getService('export').exportDataV3({
+        slug,
+        search,
+        applySearch,
         exportPluginsContentTypes,
         documentIds,
         maxDepth: deepness,
@@ -52,9 +52,6 @@ const exportData = async (ctx) => {
         deepPopulateRelations,
         deepPopulateComponentRelations
       });
-    } else if (exportFormat === 'json-v2') {
-      console.log('exportDataV2');
-      data = await getService('export').exportDataV2({ slug, search, applySearch, deepness, exportPluginsContentTypes });
     } else {
       console.log('exportData');
       data = await getService('export').exportData({ slug, search, applySearch, exportFormat, relationsAsId, deepness });
